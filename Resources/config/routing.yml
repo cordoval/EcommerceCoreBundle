@@ -1,0 +1,16 @@
+ecommerce_cart:
+    pattern:  /cart/
+    methods:  [GET]
+    defaults: { _controller: EcommerceCoreBundle:Cart:index }
+
+ecommerce_cart_add_product:
+    pattern:  /cart/
+    methods:  [POST]
+    defaults: { _controller: EcommerceCoreBundle:Cart:addProduct }
+
+ecommerce_cart_item_remove:
+    pattern:  /cart/{cartItemId}
+    methods:  [DELETE]
+    defaults: { _controller: EcommerceCoreBundle:Cart:removeCartItem }
+    requirements:
+        cartItemId: "[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}"

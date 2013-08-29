@@ -1,0 +1,23 @@
+parameters:
+    ecommerce_core.product.handler_manager.class: Ecommerce\Bundle\CoreBundle\Service\ProductHandlerManager
+    ecommerce_core.cart.manager.class: Ecommerce\Bundle\CoreBundle\Service\CartManager
+
+services:
+    ecommerce.product.handler_manager:
+        class: %ecommerce_core.product.handler_manager.class%
+        arguments:
+            - []
+
+    ecommerce.cart.manager:
+        class: %ecommerce_core.cart.manager.class%
+        arguments:
+            - @session
+            - @ecommerce.cart.repository
+
+    ecommerce.cart.repository:
+#        class: Doctrine\ORM\EntityRepository
+        class: Ecommerce\Bundle\CoreBundle\Doctrine\Orm\CartRepository
+        factory_service: doctrine
+        factory_method: getRepository
+        arguments:
+            - Ecommerce\Bundle\CoreBundle\Doctrine\Orm\Cart
